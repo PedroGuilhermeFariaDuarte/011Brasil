@@ -17,7 +17,7 @@ class ProductController {
 			if (product)
 				handlerResponse(response, 1, 200, "Product create with success", product)
 			else
-				handlerResponse(response, 1, 500, 'Not possible create your product', {})
+				handlerResponse(response, 1, 500, 'It was not possible create your product', {})
 
 			return;
 		} catch (error) {
@@ -47,9 +47,9 @@ class ProductController {
 			})
 
 			if (myProduct.length > 0)
-				handlerResponse(response, 1, 200, "Product find with success", myProduct)
+				handlerResponse(response, 1, 200, "Product found with success", myProduct)
 			else
-				handlerResponse(response, 1, 400, 'Not possible find your product', [])
+				handlerResponse(response, 1, 400, 'It was not possible found your product', [])
 
 			return;
 		} catch (error) {
@@ -63,9 +63,9 @@ class ProductController {
 			const allProducts = await ModelProduct.find()
 
 			if (allProducts.length > 0)
-				handlerResponse(response, 1, 200, "All products find with success", allProducts)
+				handlerResponse(response, 1, 200, "All products found with success", allProducts)
 			else
-				handlerResponse(response, 1, 500, 'Not possible find all products', [])
+				handlerResponse(response, 1, 500, 'It was not possible found all products', [])
 
 			return;
 		} catch (error) {
@@ -81,7 +81,7 @@ class ProductController {
 			if (deletedProduct)
 				handlerResponse(response, 1, 200, " Product deleted with success", deletedProduct)
 			else
-				handlerResponse(response, 1, 500, 'Not possible delete the product', {})
+				handlerResponse(response, 1, 500, 'It was not possible delete the product', {})
 
 			return;
 		} catch (error) {
@@ -97,7 +97,7 @@ class ProductController {
 			if (updateProduct)
 				handlerResponse(response, 1, 200, " Product updating with success", updateProduct)
 			else
-				handlerResponse(response, 1, 400, 'Not possible update the product', {})
+				handlerResponse(response, 1, 400, 'It was not possible update the product', {})
 
 			return;
 		} catch (error) {

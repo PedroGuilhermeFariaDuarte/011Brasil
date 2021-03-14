@@ -29,7 +29,7 @@ Este projeto foi construido, testado e executado com as suas dependências nas s
 
 Para começar a usar este projeto, primeiro devemos instalar todas as suas depedências, vamos lá!
 
-Este projeto está estruturado em duas pastas, **API** e **APP**, uma API e uma interface interativa respectivamente. Para instalar as dependências da API abra a pasta em um terminal de sua preferência e execute o seguinte comando:
+Este projeto foi estruturado em duas pastas, **API** e **APP**, uma API e uma interface interativa respectivamente. Para instalar as dependências da API abra a pasta em um terminal de sua preferência e execute o seguinte comando:
 
 ```bash
   # YARN
@@ -52,6 +52,23 @@ Finalizado a instalação da API, vamos agora instalar a interface (APP), repeti
 Legal **:D**, agora é so aguardar a instalação!
 
 Com a instalação da API e APP finalizadas, vamos agora executar esses programas.
+
+Antes de tudo, com a pasta **API** aberta, na raiz, você irá encontrar um arquivo chamado *.env.example*, crie um novo arquivo chamado ***.env*** e cole nele o conteudo do arquivo *.env.example*
+
+Este arquivo é necessario para definir a porta por onde a API irá "ouvir" as requisições e também para definir os dados de conexão com o banco de dados.
+
+Para se conectar a um banco de dados, basta informar o seu nome e host, os demais dados não são necessarios, veja abaixo um exemplo:
+
+```env
+  # DATABASE
+  DATABASE_USERNAME = YOUR DATABASE USERNAME
+  DATABASE_PASSWORD = YOUR DATABASE USERNAME
+  DATABASE_DATABASENAME = 011brasil
+  DATABASE_HOST = localhost
+
+  # API
+  API_PORT = 8080
+```
 
 Para inicia a API, abra a pasta **API**  em um terminal e execute o seguinte comando:
 
@@ -87,7 +104,7 @@ Toda requisição efetuada terá na sua resposta um code, message e data.
 
 **CODE**
 <br>
-O campo representa o HTTP STATUS CODE da requisição, com a diferença no modo uso, caso o conteudo solicitado na requisição não seja encontrado ou ocorra um erro fatal o code terá um HTTP STATUS CODE correspondente ou seja, caso seja solicitado um produto e ele não exista no banco de dados o code será *404*, caso venha ocorrer um erro fatal o status code será 500.
+O campo representa o HTTP STATUS CODE da requisição, com a diferença no modo uso, caso o conteudo solicitado na requisição não seja encontrado ou ocorra um erro fatal o code terá um HTTP STATUS CODE correspondente ou seja, caso seja solicitado um produto e ele não exista no banco de dados o code será *404*, caso venha ocorrer um erro fatal o status code será 500, com isso a requisição sempre será respondida com STATUS CODE 200, com o code tendo um valor apropriado.
 <br>
 <br>
 **MESSAGE**
@@ -97,7 +114,7 @@ Um texto correspondente ao retorno da requisição, pode ser desde *Product crea
 <br>
 **DATA**
 <br>
-O campo data pode vir com um objeto representado oque foi solicitado ou um array de objetos, por exemplo:
+O campo data pode vir com um objeto representando oque foi solicitado ou um array de objetos, por exemplo:
 
 ```json
  {
@@ -131,7 +148,7 @@ ou
 ```json
  {
   "code": 200,
-  "message": "All products found with success",
+  "message": "Product found with success",
   "data": 
     {
       "_id": "604d8ce5c9af243644dffc52",
