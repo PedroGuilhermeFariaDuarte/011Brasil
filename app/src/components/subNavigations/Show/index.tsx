@@ -39,7 +39,7 @@ import {
 
 // Utils
 import { SchemaUserSignUp } from '../../../utils/Schema/Product';
-import { handlerValidationForm } from "../../../utils/Validation/User"
+import { handlerValidationForm } from '../../../utils/Validation/User'
 
 // Context
 import { useGetNavigationContext } from '../../../context/Navigation'
@@ -143,7 +143,9 @@ const Show: React.FC<IMyMessage> = ({ children }) => {
 	function handlerRevertCheckbox(id: string) {
 		const optionChecked = document.querySelector(`#${id}`)
 
+		// @ts-ignore
 		if (optionChecked.checked === true) {
+			// @ts-ignore
 			optionChecked.click()
 		}
 	}
@@ -151,6 +153,7 @@ const Show: React.FC<IMyMessage> = ({ children }) => {
 	function handlerVerifyCheckbox(id: string) {
 		const optionChecked = document.querySelector(`#${id}`)
 
+		// @ts-ignore
 		if (!optionChecked.checked === false) {
 			setGetForm(false)
 		}
@@ -173,7 +176,7 @@ const Show: React.FC<IMyMessage> = ({ children }) => {
 			<ContainerHeader>
 				<div
 					id='wrapper_header_icon'
-					onClick={() => setItemID("Product")}
+					onClick={() => setItemID('Product')}
 				>
 					<MdKeyboardArrowLeft />
 				</div>
