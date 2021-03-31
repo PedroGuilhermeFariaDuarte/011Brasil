@@ -109,16 +109,26 @@ class Algorithm {
     for (let i = 0; i < this.#list_of_groups.length; i++) {
       const actualGroup = groups.get("groups")[ this.#list_of_groups[ i ] ]
       //this.setLog(`Actual group is ordering: ${this.#list_of_groups[ i ]}`)
+      //this.setLog(actualGroup, 'info')
 
-      for (let j = 0; j < actualGroup.length; j++) {
-        const actualIndex = j
-        const replaceIndex = actualIndex + 2 - 1
+      for (let j = 0; j < actualGroup.length - 1; j++) {
+        let actualIndex = j
         const actualPeople = actualGroup[ actualIndex ]
-        const replacePeople = actualGroup[ replaceIndex ]
 
-        if (actualPeople?.idade < replacePeople?.idade) {
-          actualGroup[ actualIndex ] = replacePeople
-          actualGroup[ replaceIndex ] = actualPeople
+        for (let g = actualIndex + 1; g <= actualGroup.length - 1; g++) {
+          let replaceIndex = g
+          const replacePeople = actualGroup[ replaceIndex ]
+
+          //this.setLog(`Actual ${actualIndex} ${actualPeople.nome} - Go replace ${replaceIndex} ${replacePeople.nome}`, 'info')
+
+          if (actualPeople?.idade < replacePeople?.idade) {
+            //this.setLog(`Actual ${actualPeople.nome} - Replace ${replacePeople.nome}`, 'info')
+            actualGroup[ actualIndex ] = replacePeople
+            actualGroup[ replaceIndex ] = actualPeople
+            actualIndex = replaceIndex
+
+            if (actualIndex <= actualGroup.length) j = 0
+          }
         }
       }
 

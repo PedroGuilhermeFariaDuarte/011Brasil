@@ -45,7 +45,7 @@ Com isso em mente o fluxo de organização foi definido da seguinte forma:
   <br>
   2ª **Re-agrupa os items**
   <br>
-  3ª **Orderna de maneira parcial os items de cada grupo**
+  3ª **Orderna items de cada grupo**
 
 Todo o fluxo é executado de maneira linear, tem inicio no primeiro item da lista e finaliza no ultimo, isso acontece em todas as etapas do fluxo.
 
