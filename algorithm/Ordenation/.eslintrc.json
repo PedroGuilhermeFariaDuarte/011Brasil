@@ -1,0 +1,109 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "standard"
+    ],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".ts"
+                ]
+            }
+        }
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "quotes": [
+            "warn",
+            "semi",
+            {
+                "avoidEscape": true,
+                "allowTemplateLiterals": true
+            }
+        ],
+        "prettier/prettier": "error",
+        // "react/no-array-index-key": "off",
+        "computed-property-spacing": [
+            "warn",
+            "always"
+        ],
+        "no-multi-assign": "off",
+        "import/prefer-default-export": 0,
+        "semi": "off",
+        "no-extra-semi": "off",
+        "array-bracket-spacing": [
+            1,
+            "always"
+        ],
+        "operator-linebreak": [
+            "warn",
+            "after"
+        ],
+        "arrow-body-style": [
+            "warn",
+            "as-needed"
+        ],
+        "indent": [
+            "warn",
+            2
+        ],
+        "implicit-arrow-linebreak": [
+            "off"
+        ],
+        "import/extensions": [
+            0,
+            {
+                "tsx": "never",
+                "js": "never",
+                "ts": "never"
+            }
+        ],
+        "comma-dangle": [
+            "error",
+            "only-multiline"
+        ],
+        "no-unused-vars": [
+            "warn",
+            {
+                "ignoreRestSiblings": true
+            }
+        ],
+        "no-use-before-define": [
+            "warn",
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true
+            }
+        ],
+        "no-console": "off",
+        "no-alert": "error",
+        "no-restricted-globals": [
+            "blur"
+        ],
+        "import/no-anonymous-default-export": [
+            "warn",
+            {
+                "allowArray": true,
+                "allowArrowFunction": true,
+                "allowAnonymousClass": true,
+                "allowAnonymousFunction": true,
+                "allowCallExpression": true, // The true value here is for backward compatibility
+                "allowLiteral": true,
+                "allowObject": true
+            }
+        ]
+    }
+}
