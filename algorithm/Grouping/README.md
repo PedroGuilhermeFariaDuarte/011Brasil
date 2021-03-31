@@ -34,7 +34,7 @@ Este projeto foi construido, testado e executado com as suas dependências nas s
 
 ## 💻 O algoritmo
 
-Este algoritmo foi construido para organizar uma lista de pessoas que estão em uma lista de vacinação, os requisitos são os seguintes:
+Este algoritmo foi construido para organizar em grupo uma lista de vacinação, os requisitos são os seguintes:
   1. Deve ser organizada em 4 grupos
   2. Maiores de 60 anos tem prioridade
   3. Atividades priorizadas: Saúde, Educação, Alimentícios e Segurança
@@ -53,11 +53,11 @@ Todo o fluxo é executado de maneira linear, tem inicio no primeiro item da list
 
 Com o fluxo do algoritmo sendo dividido em três partes, vamos entender cada uma:
 <br>
-  1. Na primeira etapa a **lista de pessoas** é percorrida a partir do primeiro item até o ultimo, durante o processo é verificado se a pessoa tem uma idade superior a **60 anos**, se sim, é verificado se o grupo 1 (grupoOne) possuí uma "vaga", em caso positivo ela é adicionada no grupo 1 (grupoOne), em caso negativo na segunda verificação, a pessoa será adicionada nos grupos seguintes que tiverem uma "vaga" aberta, caso nenhum grupo tenha vagas sobrando a pessoa não será adicionada em um grupo.
-  <br>
-  2. Na segunda etapa em comjunto com terceira, com a lista agora em grupos, ela vai ser tranformada em um array multidimensional (**o motivo disso é devido a forma com qual a organização em grupo foi estruturada, um objeto com array's**), este processo ordena cada grupo, com cada item do grupo sendo parcialmente ordenado em forma decrescente, com o fim da ordenação o resultado é **re-estruturado em um objeto de array's**.
+  1. Na primeira etapa a **lista de vacinação** é percorrida a partir do primeiro item até o ultimo, durante o processo é verificado se a pessoa tem uma idade superior a **60 anos** e se a area de atuação faz parte das atividades prioritárias, se sim, é verificado se o grupo 1 (grupoOne) possuí uma "vaga", caso a pessoa se enquadre na idade ela é adicionada no grupo 1 (grupoOne), em caso negativo, a pessoa será adicionada nos grupos seguintes que tiverem uma "vaga" aberta, caso nenhum grupo tenha vagas sobrando a pessoa não será adicionada em um grupo.
+  
+  2. Na segunda etapa em conjunto com a terceira, com a lista agora em grupos, ela vai ser tranformada em um array multidimensional (**o motivo disso é devido a forma com qual a organização em grupo foi estruturada, um objeto de array's**), este processo ordena cada grupo, com cada item do grupo sendo parcialmente ordenado em forma decrescente, com o fim da ordenação o resultado é **re-estruturado em um objeto de array's**.
 
-Outras operações internas são executadas, mas as mesma não possuem nenhum papel de peso no fluxo principal, com execeção do metódo *addedInGroup* (Adiciona um item em um grupo)
+Outras operações internas são executadas, mas as mesma não possuem nenhum papel de peso no fluxo principal, com execeção do metódo *addOnGroup* (Adicionar no grupo)
 
 *As 1ª e 3ª etapas levam em consideração a idade da pessoa*
 
@@ -79,7 +79,7 @@ Aguarde a instalação, com ela conluido já podemos ir para a proxíma seção.
 
 Para iniciar o algoritimo certifique se os dados de entrada estão no arquivo **index.json** na pasta **src/data**.
 
-Abra um terminal de sua prerência, acesse a pasta ./algorithm/Grouping e execute o seguinte codigo:
+Abra um terminal de sua preferência, acesse a pasta **./algorithm/Grouping** e execute o seguinte codigo:
 
 ```bash
   # YARN
@@ -91,3 +91,5 @@ Abra um terminal de sua prerência, acesse a pasta ./algorithm/Grouping e execut
 ## Visualizando as etapas
 
 No terminal aberto na seção anterior, você verá uma serie de log's sendo exibido, cada log representa uma etapa no fluxo do algoritmo.
+
+Após o termino do algoritmo um ultimo log será exibido, informando que a operação terminou e passando o link para acessar o resultado.

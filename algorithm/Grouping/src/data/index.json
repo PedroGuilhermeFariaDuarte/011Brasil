@@ -8,7 +8,7 @@
     {
       "nome": "Flavio Oliveira",
       "idade": 80,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Aposentado"
     },
     {
       "nome": "Rodrigo Sousa",
@@ -18,7 +18,7 @@
     {
       "nome": "Carlos Pará",
       "idade": 63,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Mecânica"
     },
     {
       "nome": "Ricardo Magalhães",
@@ -28,7 +28,7 @@
     {
       "nome": "Fabio Lima",
       "idade": 70,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Aposentado"
     },
     {
       "nome": "Sônia Marques",
@@ -43,7 +43,7 @@
     {
       "nome": "Maria Antônia",
       "idade": 70,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Aposentada"
     },
     {
       "nome": "Raquel Alvares",
@@ -53,7 +53,7 @@
     {
       "nome": "Antônio Meireles",
       "idade": 55,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Comércio"
     },
     {
       "nome": "Eder Vaine",
@@ -62,7 +62,7 @@
     },
     {
       "nome": "Angelo Pereira",
-      "idade": 70,
+      "idade": 60,
       "areaDeAtuacao": "Saúde"
     },
     {
@@ -73,7 +73,7 @@
     {
       "nome": "Francisco Junior",
       "idade": 64,
-      "areaDeAtuacao": "Educação"
+      "areaDeAtuacao": "Comérico"
     },
     {
       "nome": "Murillo Bento",

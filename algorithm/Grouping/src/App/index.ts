@@ -12,7 +12,7 @@ import { GroupsOfPeople, People } from "./types"
 
 class Algorithm {
 
-  #people: Array<People> = Data.pessoas
+  #people: Array<People> = Data.pessoas || []
   #age_of_people: number = 60
   #total_of_groups: number = 4
   #total_people_per_group: number = (this.#people?.length === 0 || this.#people?.length < 0 ? 20 : this.#people?.length) / this.#total_of_groups
@@ -58,9 +58,17 @@ class Algorithm {
   }
 
   initialize() {
-    Logger.info(`Length of data: ${this.#people?.length || 0}`)
-    Logger.info(`Total of groups: ${this.#total_of_groups || 0}`)
-    Logger.info(`Total of peoples per group: ${this.#total_people_per_group || 0}`)
+    this.setLog(`Length of data: ${this.#people?.length || 0}`, 'info')
+    this.setLog(`Total of groups: ${this.#total_of_groups || 0}`, 'info')
+    this.setLog(`Total of peoples per group: ${this.#total_people_per_group || 0}`, 'info')
+
+    if (this.#people.length <= 0) {
+      return Promise.all(
+        [
+          this.setLog("I don't have any data! Please open the 'data' folder and create a file called 'index.json'", "warn")
+        ]
+      )
+    }
 
     return Promise.all([
       this.initializeGrouping(),
@@ -71,7 +79,7 @@ class Algorithm {
 
   // Ordering of items in groups
   initializeGrouping(): void {
-    Logger.info("----Initializing Grouping----")
+    this.setLog("----Initializing Grouping----", "info")
 
     let total_iteration = 0;
     let total_people_added = 0;
@@ -80,18 +88,18 @@ class Algorithm {
       if (this.#people[ i ].areaDeAtuacao.match(this.#regex_condition) !== null) {
         if (this.addOnGroup(this.#people[ i ])) total_people_added++
       } else {
-        //Logger.info(`People ${this.#people[ i ].nome}, the area '${this.#people[ i ].areaDeAtuacao}' is not priority`)
+        //this.setLog(`People ${this.#people[ i ].nome}, the area '${this.#people[ i ].areaDeAtuacao}' is not priority`,'warn')
       }
     }
-    Logger.info(`Total of iteration: ${total_iteration}`)
-    Logger.info(`Total of people added: ${total_people_added}`)
-    Logger.info(`Total of people who were not added: ${total_iteration - total_people_added}`)
-    Logger.info("----Grouping was finished----")
+    this.setLog(`Total of iteration: ${total_iteration}`, 'info')
+    this.setLog(`Total of people added: ${total_people_added}`, 'info')
+    this.setLog(`Total of people who were not added: ${total_iteration - total_people_added}`, 'info')
+    this.setLog("----Grouping was finished----", 'info')
   }
 
   // Parsial Ordering of all items per age
   initializeOrderingOfGroups(): Array<any> {
-    Logger.info("----Initializing Ordering of groups----")
+    this.setLog("----Initializing Ordering of groups----", "info")
 
     const groups = new Map()
     groups.set("groups", this.#groups)
@@ -100,7 +108,7 @@ class Algorithm {
 
     for (let i = 0; i < this.#list_of_groups.length; i++) {
       const actualGroup = groups.get("groups")[ this.#list_of_groups[ i ] ]
-      //Logger.info(`Actual group is ordering: ${this.#list_of_groups[ i ]}`)
+      //this.setLog(`Actual group is ordering: ${this.#list_of_groups[ i ]}`)
 
       for (let j = 0; j < actualGroup.length; j++) {
         const actualIndex = j
@@ -114,50 +122,54 @@ class Algorithm {
         }
       }
 
-      //Logger.info(`Actual ordering of group was finished: ${this.#list_of_groups[ i ]}`)
+      //this.setLog(`Actual ordering of group was finished: ${this.#list_of_groups[ i ]}`)
       orderingGroup.push(actualGroup)
     }
 
     groups.set("groups", orderingGroup)
-    Logger.info("----Ordering of groups was finished----")
+    this.setLog("----Ordering of groups was finished----", "info")
     return Array.from(groups.get("groups").values())
   }
 
   // Re-grouping of items in groups
   initializeReGrouping(): void {
-    Logger.info("----Initializing Re-grouping----")
+    this.setLog("----Initializing Re-grouping----", "info")
     const ordened_groups: Array<any> = this.initializeOrderingOfGroups()
     for (let i = 0; i < this.#list_of_groups.length; i++) {
       // @ts-ignore
       this.#groups[ `${this.#list_of_groups[ i ]}` ] = ordened_groups[ i ]
     }
 
-    Logger.info("----Re-grouping was finished----")
+    this.setLog("----Re-grouping was finished----", "info")
   }
 
   // Added a item in a group
   addOnGroup(people: People): boolean {
 
-    if (people.idade > this.#age_of_people) {
-      if (this.#groups.groupOne.length < this.#total_people_per_group) {
-        //setLogger(people.nome, people.areaDeAtuacao, 'Added in group 1')
-        this.#groups.groupOne.push(people)
-      }
+    if (
+      people.idade > this.#age_of_people
+      &&
+      this.#groups.groupOne.length < this.#total_people_per_group) {
+      //setLogPeople(people.nome, people.areaDeAtuacao, 'Added in group 1')
+      this.#groups.groupOne.push(people)
     } else {
-      if (this.#groups.groupTwo.length < this.#total_people_per_group) {
-        //setLogger(people.nome, people.areaDeAtuacao, 'Added in group 2')
+      if (this.#groups.groupOne.length < this.#total_people_per_group) {
+        //setLogPeople(people.nome, people.areaDeAtuacao, 'Added in group 1')
+        this.#groups.groupOne.push(people)
+      } else if (this.#groups.groupTwo.length < this.#total_people_per_group) {
+        //setLogPeople(people.nome, people.areaDeAtuacao, 'Added in group 2')
         this.#groups.groupTwo.push(people)
 
       } else if (this.#groups.groupThree.length < this.#total_people_per_group) {
-        //setLogger(people.nome, people.areaDeAtuacao, 'Added in group 3')
+        //setLogPeople(people.nome, people.areaDeAtuacao, 'Added in group 3')
         this.#groups.groupThree.push(people)
 
       } else if (this.#groups.groupFor.length < this.#total_people_per_group) {
-        //setLogger(people.nome, people.areaDeAtuacao, 'Added in group 4')
+        //setLogPeople(people.nome, people.areaDeAtuacao, 'Added in group 4')
         this.#groups.groupFor.push(people)
 
       } else {
-        Logger.info(`Dont not possible added the people ${people.nome}  in a group, all groups is full`)
+        this.setLog(`Dont not possible added the people ${people.nome}  in a group, all groups is full`, 'warn')
         return false
       }
     }
@@ -167,20 +179,25 @@ class Algorithm {
 
   // Save o resul in a json file
   async setSaveNewFile() {
-    Logger.info("----Initializing saving of result on file----")
+    this.setLog("----Initializing saving of result on file----", "info")
     try {
       const pathStream = await fs.opendir(resolve(__dirname, "..") + "/data")
       fs.writeFile(`${pathStream.path}/result.json`, JSON.stringify(this.#groups))
-        .then(_resolve => Logger.info("----Saving of file was finished----"))
-        .catch(error => Logger.error(`Have a error: ${error.message}`))
+        .then(_resolve => this.setLog("----Saving of file was finished----", "info"))
+        .catch(error => this.setLog(`Have a error: ${error.message}`, "error"))
     } catch (error) {
-      Logger.error(`Have a error: ${error.message}`)
+      this.setLog(`Have a error: ${error.message}`, 'error')
     }
   }
 
-  // Show log's 
-  setLogger(name: string, area: string, description: string): void {
+  // Show log's of people
+  setLogPeople(name: string, area: string, description: string): void {
     Logger.info(`People: ${name} - Area: ${area}, ${description}`)
+  }
+
+  // Show log's
+  setLog(message: string, level: string): void {
+    Logger[ level ](message)
   }
 }
 
